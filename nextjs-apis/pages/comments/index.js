@@ -10,6 +10,7 @@ function CommentsPage() {
     const data = await response.json()
     setComments(data)
   }
+
   const submitComment = async () => {
     const response = await fetch('/api/comments', {
       method: 'POST',
@@ -32,13 +33,13 @@ function CommentsPage() {
   return (
     <>
       <input type={'text'} value={comment} onChange={(e) => setComment(e.target.value)}/>
-      <button onClick={submitComment}>Submit Comment</button>
-      <button onClick={fetchComments}>Fetch Comments</button>
+      <button onClick={submitComment}>Submit Comment</button><br /><br />
+      <button onClick={fetchComments}>Fetch Comments</button><br /><br />
       {
         comments.map((comment, index) => {
           return(
             <div key={comment.id}>
-              {index+1} {comment.title}
+              {index+1} {comment.title} 
               <button onClick={() => deleteComment(comment.id)}>Delete</button>
             </div>
           )
