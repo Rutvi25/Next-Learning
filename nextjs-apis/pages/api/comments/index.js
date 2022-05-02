@@ -11,6 +11,10 @@ export default function handler(req, res) {
     res.status(201).json(newComment)
   } else if (req.method === 'GET') {
     console.log(req) 
-    res.status(200).json(comments)
+    if(req.headers.data === '1'){
+      res.status(200).json(comments)
+    } else {
+      res.status(200).json(users)
+    }
   }
 }

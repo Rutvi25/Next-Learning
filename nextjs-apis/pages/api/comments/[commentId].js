@@ -1,7 +1,7 @@
-import { comments } from "../../../data/comments";
+import { comments, users } from "../../../data/comments";
 
 export default function handler(req, res) {
-  const { commentId } = req.query
+  const { commentId, userId } = req.query
   if(req.method === 'GET') {
     const comment = comments.find(
       (comment) => comment.id === parseInt(commentId)
@@ -17,4 +17,14 @@ export default function handler(req, res) {
     comments.splice(index, 1)
     res.status(200).json(deletedComment)
   }
+  // else if (req.method === 'DELETE') {
+  //   const deletedUser = users.find(
+  //     (user) => user.id === parseInt(userId)
+  //   )
+  //   const index = users.findIndex(
+  //     (user) => user.id === parseInt(userId)
+  //   )
+  //   users.splice(index, 1)
+  //   res.status(200).json(deletedUser)
+  // }
 }
