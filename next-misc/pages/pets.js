@@ -14,7 +14,7 @@ function Pets() {
     //   }
     // )}
     // </div>
-    <div>Pets</div>
+    <h1 className='content'>Pets</h1>
   )
 }
 
