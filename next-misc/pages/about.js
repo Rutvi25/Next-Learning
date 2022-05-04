@@ -1,9 +1,16 @@
-import React from 'react'
-import Footer from '../components/Footer'
+import React from 'react';
+import Head from 'next/head';
+import Footer from '../components/Footer';
 
 function About() {
   return (
-    <div className='content'>About</div>
+    <>
+      <Head>
+        <title>About Page</title>
+        <meta name='description' content='nextJs miscellaneous topics'/>
+      </Head>
+      <h1 className='content'>About</h1>
+    </>
   )
 }
 
