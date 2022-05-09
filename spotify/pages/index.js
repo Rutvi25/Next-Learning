@@ -1,14 +1,21 @@
-import Head from 'next/head'
-import Image from 'next/image'
+// import Head from 'next/head'
+import Sidebar from '../components/Sidebar'
 
 const Home = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
+    <div className='bg-black h-screen overflow-hidden'>
+      {/* <Head>
         <title>Spotify</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
-      <h1>Spotify</h1>
+      {/* </Head> */} 
+      <main>
+        <Sidebar />
+        {/* center */}
+      </main>
+
+      <div>
+        {/* player */}
+      </div>
     </div>
   )
 }
