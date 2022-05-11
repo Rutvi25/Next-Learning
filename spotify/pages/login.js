@@ -1,5 +1,4 @@
 import { getProviders, signIn } from 'next-auth/react'
-import React from 'react'
 
 function Login({providers}) {
   return (

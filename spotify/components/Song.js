@@ -1,4 +1,3 @@
-import React from 'react'
 import { useRecoilState } from 'recoil'
 import useSpotify from '../hooks/useSpotify'
 import { millisToMinutesAndSeconds } from '../lib/time'
@@ -27,7 +26,7 @@ function Song({ order, track }) {
         <img 
           className='h-10 w-10' 
           src={track.track.album.images[0].url} 
-          alt=''
+          alt='song-image'
         />
         <div>
           <p className='w-36 lg:w-64 text-white truncate'>{track.track.name}</p>

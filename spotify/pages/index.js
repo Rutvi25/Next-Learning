@@ -1,23 +1,23 @@
-// import Head from 'next/head'
+import Head from 'next/head'
 import { getSession } from 'next-auth/react'
 import Sidebar from '../components/Sidebar'
 import Center from '../components/Center'
+import Player from '../components/Player'
 
 const Home = () => {
   return (
     <div className='bg-black h-screen overflow-hidden'>
-      {/* <Head>
+      <Head>
         <title>Spotify</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      {/* </Head> */} 
+        <link rel="icon" href="/favicon.ico" />
+      </Head> 
       <main className='flex'>
         <Sidebar />
         <Center />
-        {/* center */}
       </main>
 
-      <div>
-        {/* player */}
+      <div className='sticky bottom-0'>
+        <Player />
       </div>
     </div>
   )

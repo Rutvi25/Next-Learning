@@ -4,32 +4,33 @@ const scopes = [
   'user-read-email',
   'playlist-read-private',
   'playlist-read-collaborative',
+  'user-read-email',
   'streaming',
   'user-read-private',
   'user-library-read',
   'user-top-read',
+  // "user-library-modify",
   'user-read-playback-state',
   'user-modify-playback-state',
-  'user-read-currently-playing',
+  // 'user-read-currently-playing',
   'user-read-recently-played',
-  'user-follow-read'
+  'user-follow-read',
 ].join(',');
 
 const params = {
-  scope: scopes
-}
+  scope: scopes,
+};
 
-const queryParamString = new URLSearchParams(params).toString();
+const querParamString = new URLSearchParams(params);
 
-const LOGIN_URL = 
-  "https://accounts.spotify.com/authorize?"+queryParamString.toString()
+const LOGIN_URL =
+  'https://accounts.spotify.com/authorize?' + querParamString.toString();
 
-const spotifyApi = new SpotifyWebApi({
+const SpotifyAPI = new SpotifyWebApi({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
   clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-  redirectUrl: process.env.NEXT_PUBLI_REDIRECT_URL
-})
+});
 
-export default spotifyApi;
+export default SpotifyAPI;
 
-export { LOGIN_URL}
+export { LOGIN_URL };
