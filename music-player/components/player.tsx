@@ -32,7 +32,7 @@ const Player = ({ songs, activeSong }) => {
   const [shuffle, setShuffle] = useState(false);
   const [duration, setDuration] = useState(0.0);
   const soundRef = useRef(null);
-  const repeatRef = useRef(repeat)
+  const repeatRef = useRef(repeat);
   const setActiveSong = useStoreActions((state: any) => state.changeActiveSong);
 
   useEffect(() => {
@@ -49,12 +49,12 @@ const Player = ({ songs, activeSong }) => {
   }, [playing, isSeeking]);
 
   useEffect(() => {
-    setActiveSong(songs[index])
+    setActiveSong(songs[index]);
   }, [index, setActiveSong, songs]);
 
   useEffect(() => {
-    repeatRef.current = repeat
-  }, [repeat])
+    repeatRef.current = repeat;
+  }, [repeat]);
 
   const setPlayState = (value) => {
     setPlaying(value);
@@ -84,11 +84,11 @@ const Player = ({ songs, activeSong }) => {
   };
   const onEnd = () => {
     if (repeatRef.current) {
-      console.log("repeat")
+      console.log("repeat");
       setSeek(0);
       soundRef.current.seek(0);
     } else {
-      console.log("don't repeat")
+      console.log("don't repeat");
       nextSong();
     }
   };
@@ -171,7 +171,6 @@ const Player = ({ songs, activeSong }) => {
           />
         </ButtonGroup>
       </Center>
-
       <Box color="gray.600">
         <Flex justify="center" align="center">
           <Box width="10%">
@@ -183,7 +182,7 @@ const Player = ({ songs, activeSong }) => {
               step={0.1}
               min={0}
               id="player-range"
-              max={duration ? duration.toFixed(2) : 0}
+              max={duration ? (duration.toFixed(2) as unknown as number) : 0}
               onChange={onSeek}
               value={[seek]}
               onChangeStart={() => setIsSeeking(true)}
