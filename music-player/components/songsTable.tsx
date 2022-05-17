@@ -11,8 +11,8 @@ const SongsTable = ({ songs }) => {
 
   const handlePlay = (activeSong?) => {
     setActiveSong(activeSong || songs[0]);
-    playSongs(songs)
-  }
+    playSongs(songs);
+  };
   return (
     <Box bg="transparent" color="white">
       <Box padding="10px" marginBottom="20px">
