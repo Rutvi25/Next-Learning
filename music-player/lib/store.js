@@ -12,28 +12,28 @@ export const store = createStore(
       seek: 0.0,
     },
     // actions
-    changeActiveSongs: action((state: any, payload) => {
+    changeActiveSongs: action((state, payload) => {
       state.activeSongs = payload;
     }),
-    changeActiveSong: action((state: any, payload) => {
+    changeActiveSong: action((state, payload) => {
       // console.log(payload);
       state.activeSong = payload;
     }),
-    changePlayState: action((state: any, payload) => {
+    changePlayState: action((state, payload) => {
       state.songStates.playing = payload;
     }),
-    changeRepeat: action((state: any) => {
+    changeRepeat: action((state) => {
       state.songStates.repeat = !state.songStates.repeat;
     }),
-    changeShuffle: action((state: any) => {
+    changeShuffle: action((state) => {
       state.songStates.shuffle = !state.songStates.shuffle;
     }),
-    prevSong: action((state: any, payload) => {
+    prevSong: action((state, payload) => {
       state.songStates.index = payload
         ? payload - 1
         : state.activeSongs.length - 1;
     }),
-    nextSong: action((state: any, payload) => {
+    nextSong: action((state, payload) => {
       if (state.songStates.shuffle) {
         const next = Math.floor(Math.random() * state.activeSongs.length);
         if (next === payload) {
@@ -44,8 +44,8 @@ export const store = createStore(
       state.songStates.index =
         payload === state.activeSongs.length - 1 ? 0 : payload + 1;
     }),
-    setSeek: action((state: any, payload) => {
-      state.songStates.seek = payload;
-    }),
+    // setSeek: action((state: any, payload) => {
+    //   state.songStates.seek = payload;
+    // }),
   })
 );
