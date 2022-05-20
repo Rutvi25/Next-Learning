@@ -6,7 +6,7 @@ const PlayerBar = () => {
   const songs = useStoreState((state) => state.activeSongs);
   const activeSong = useStoreState((state) => state.activeSong);
   return (
-    <Box height="100%" width="100vw" bg="gray.900" padding="10px">
+    <Box height="100%" width="100vw" padding="10px">
       <Flex align="center">
         {activeSong ? (
           <Box padding="20px" color="white" width="30%">

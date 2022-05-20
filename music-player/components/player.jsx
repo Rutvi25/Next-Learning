@@ -21,7 +21,7 @@ import {
   MdOutlineRepeat,
 } from "react-icons/md";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import { formatTime } from "../lib/formatters";
+import { formatTime } from "../lib/formatters.js";
 
 const Player = ({ songs, activeSong }) => {
   // const [playing, setPlaying] = useState(true);
@@ -36,9 +36,9 @@ const Player = ({ songs, activeSong }) => {
   const prevSong = useStoreActions((state) => state.prevSong);
   const nextSong = useStoreActions((state) => state.nextSong);
   // const [index, setIndex] = useState(0);
-  const [seek, setSeek] = useState(0.0);
-  // const seek = useStoreState((state: any) => state.songStates.seek);
-  // const setSeek = useStoreActions((state: any) => state.setSeek);
+  // const [seek, setSeek] = useState(0.0);
+  const seek = useStoreState((state) => state.songStates.seek);
+  const setSeek = useStoreActions((state) => state.setSeek);
   const [isSeeking, setIsSeeking] = useState(false);
   // const [repeat, setRepeat] = useState(false);
   // const [shuffle, setShuffle] = useState(false);

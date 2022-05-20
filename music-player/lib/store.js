@@ -36,16 +36,14 @@ export const store = createStore(
     nextSong: action((state, payload) => {
       if (state.songStates.shuffle) {
         const next = Math.floor(Math.random() * state.activeSongs.length);
-        if (next === payload) {
-          return state.nextSong();
-        }
-        return next;
+        state.songStates.index = (state.songStates.index + next) % 6;
+      } else {
+        state.songStates.index =
+          payload === state.activeSongs.length - 1 ? 0 : payload + 1;
       }
-      state.songStates.index =
-        payload === state.activeSongs.length - 1 ? 0 : payload + 1;
     }),
-    // setSeek: action((state: any, payload) => {
-    //   state.songStates.seek = payload;
-    // }),
+    setSeek: action((state, payload) => {
+      state.songStates.seek = payload;
+    }),
   })
 );
