@@ -4,18 +4,20 @@ import { useState } from "react";
 // import { useSWRConfig } from "swr";
 import NextImage from "next/image";
 
-import { auth } from "../lib/mutations";
+import { auth } from "../lib/mutations.js";
 
 const AuthForm = ({ mode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await auth(mode, { email, password });
+    await auth(mode, { email, password, firstName, lastName });
     setIsLoading(false);
     router.push("/");
   };
@@ -33,6 +35,20 @@ const AuthForm = ({ mode }) => {
       <Flex justify="center" align="center" height="calc(100vh - 100px)">
         <Box padding="50px" bg="gray.900" borderRadius="6px">
           <form onSubmit={handleSubmit}>
+            {mode === "signup" && (
+              <Input
+                placeholder="firstName"
+                type="text"
+                onChange={(e) => setfirstName(e.target.value)}
+              />
+            )}
+            {mode === "signup" && (
+              <Input
+                placeholder="lastName"
+                type="text"
+                onChange={(e) => setlastName(e.target.value)}
+              />
+            )}
             <Input
               placeholder="email"
               type="email"

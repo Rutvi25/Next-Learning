@@ -6,7 +6,7 @@ import prisma from "../../lib/prisma.js";
 
 export default async (req, res) => {
   const salt = bcrypt.genSaltSync();
-  const { email, password } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   let user;
 
@@ -15,8 +15,8 @@ export default async (req, res) => {
       data: {
         email,
         password: bcrypt.hashSync(password, salt),
-        firstName: "",
-        lastName: "",
+        firstName,
+        lastName,
       },
     });
   } catch (e) {
