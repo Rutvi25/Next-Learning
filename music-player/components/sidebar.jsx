@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import NextLink from "next/link";
-// import { useCookies } from "react-cookie";
-import { getCookies } from "cookies-next";
+import { getCookies, removeCookies } from "cookies-next";
+import Router from "next/router";
 
 import {
   Box,
@@ -55,14 +55,11 @@ const musicMenu = [
 
 const Sidebar = () => {
   const { playlists } = usePlaylist();
-  // const [cookie, , removeCookie] = useCookies(["TRAX_ACCESS_TOKEN"]);
   const handleLogout = () => {
-    // console.log(cookie);
     console.log("logout");
-    // removeCookie("TRAX_ACCESS_TOKEN", { path: "/" });
-    console.log(
-      getCookies({ domain: "localhost", path: "/" })
-    );
+    console.log(getCookies({ domain: "localhost", path: "/" }));
+    removeCookies("TRAX_ACCESS_TOKEN");
+    Router.reload();
   };
   return (
     <Box
@@ -76,7 +73,13 @@ const Sidebar = () => {
         <Box width="120px" marginBottom="20px" paddingX="20px">
           <NextImage src="/logo.svg" height={60} width={120} />
         </Box>
-        <Button onClick={() => handleLogout()}>Logout</Button>
+        <Button
+          bg="transparent"
+          marginBottom="20px"
+          onClick={() => handleLogout()}
+        >
+          Logout
+        </Button>
         <Box marginBottom="20px">
           <List spacing={2}>
             {navMenu.map((menu) => (
@@ -119,7 +122,7 @@ const Sidebar = () => {
         </Box>
         <Divider color="gray.800" />
         <Box
-          height="66%"
+          height="55%"
           overflowY="auto"
           paddingY="20px"
           css={{
@@ -150,5 +153,4 @@ const Sidebar = () => {
     </Box>
   );
 };
-
 export default Sidebar;

@@ -1,19 +1,18 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
-// import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma.js";
 
 export default async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUnique({
     where: {
       email,
     },
   });
 
-  if (user && bcrypt.compare(password, user.password)) {
+  if (user && bcrypt.compareSync(password, user.password)) {
     const token = jwt.sign(
       {
         id: user.id,
@@ -32,7 +31,7 @@ export default async (req, res) => {
         httpOnly: true,
         maxAge: 8 * 60 * 60,
         path: "/",
-        sameSite: "strict",
+        sameSite: "lax",
         secure: process.env.NODE_ENV === "production",
       })
     );
