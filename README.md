@@ -1,2 +1,2 @@
 # Next-Learning
-NextJs Udemy Course
+NextJs-Udemy-Course
