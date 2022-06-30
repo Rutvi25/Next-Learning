@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Portfolio = () => {
+const PortfolioPage = () => {
   return (
     <div>
-      <h1>Portfolio</h1>
+      <h1>Portfolio Page</h1>
     </div>
   )
 }
 
-export default Portfolio
+export default PortfolioPage
