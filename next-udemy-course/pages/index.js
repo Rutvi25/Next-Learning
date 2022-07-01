@@ -1,5 +1,10 @@
+import path from 'path';
 import React from 'react';
 import Link from 'next/link';
+//importing file system module from node, 
+import fs from 'fs/promises'  
+// browser side javaScript can't access the file system, but it can be used inside the getStaticProps.
+// readFile() will return the promise when we use fs/promise.
 
 const HomePage = (props) => {
   const { products } = props;
@@ -10,7 +15,6 @@ const HomePage = (props) => {
         <li><Link href='/portfolio'>Portfolio</Link></li>
         <li><Link href='/client'>Clients</Link></li>
       </ul>
-      {/*fetching this product data will be done on the server side, not the client side*/}
       <ul>
         {products.map(product => <li key={product.id}>{product.title}</li>)}
       </ul>
@@ -18,10 +22,14 @@ const HomePage = (props) => {
   )
 }
 // getStaticProps function will be executed first and then the HomePage component will be executed/rendered.
+// fetching this product data will be done on the server side, not the client side
 export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
+  const jsonData = await fs.readFile(filePath)
+  const data = JSON.parse(jsonData)
   return { 
     props: {
-      products: [{ id: 'p1', title: 'Product 1'}]
+      products: data.products
     }
   };
 }
