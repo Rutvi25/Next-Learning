@@ -24,13 +24,15 @@ const HomePage = (props) => {
 // getStaticProps function will be executed first and then the HomePage component will be executed/rendered.
 // fetching this product data will be done on the server side, not the client side
 export async function getStaticProps() {
+  console.log('Regenerating...')
   const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
   const jsonData = await fs.readFile(filePath)
   const data = JSON.parse(jsonData)
   return { 
     props: {
       products: data.products
-    }
+    },
+    revalidate: 10
   };
 }
 
