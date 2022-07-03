@@ -1,5 +1,3 @@
- 
-
 const PortfolioPage = () => {
   return (
     <div>

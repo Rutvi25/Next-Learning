@@ -1,4 +1,3 @@
- ;
 import Link from 'next/link';
 import path from 'path';
 //importing file system module from node, 

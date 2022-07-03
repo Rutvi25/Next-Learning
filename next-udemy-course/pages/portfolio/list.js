@@ -1,5 +1,3 @@
- 
-
 const ListPage = () => {
   return (
     <div>
