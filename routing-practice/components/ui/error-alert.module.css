@@ -1,0 +1,12 @@
+.alert {
+  margin: 16px auto;
+  padding: 16px 32px;
+  width: 90%;
+  max-width: 640px;
+  background-color: #d5bdfc;
+  color: #38028d;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 6px;
+}
