@@ -12,8 +12,9 @@ const FilteredEventsPage = (props) => {
   const [loadedEvents, setLoadedEvents] = useState();
   const router = useRouter();
   const filterData = router.query.slug;
+  const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error } = useSWR(
-    'https://nextjs-udemy-course-8ef7f-default-rtdb.firebaseio.com/events.json'
+    'https://nextjs-udemy-course-8ef7f-default-rtdb.firebaseio.com/events.json', fetcher
   );
   useEffect(() => {
     if(data) {
@@ -63,6 +64,7 @@ const FilteredEventsPage = (props) => {
       eventDate.getMonth() === numMonth - 1
     );
   });
+  console.log(filteredEvents)
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return ( 
@@ -84,43 +86,5 @@ const FilteredEventsPage = (props) => {
     </>
   );
 };
-
-// export async function getServerSideProp() {
-//   const { params } = context;
-//   const filterData = params.slug;
-//   const filteredYear = filterData[0];
-//   const filteredMonth = filterData[1];
-//   const numYear = +filteredYear;
-//   const numMonth = +filteredMonth;
-//   if (
-//     isNaN(numYear) ||
-//     isNaN(numMonth) ||
-//     numYear > 2030 ||
-//     numMonth < 1 ||
-//     numMonth > 12
-//   ) {
-//     return {
-//       props: { hasError: true },
-//       // notFound: true,
-//       // redirect: {
-//       //   destination: '/error'
-//       // }
-//     };
-//   }
-//   const filteredEvents = await getFilteredEvents({
-//     year: numYear,
-//     month: numMonth,
-//   });
-
-//   return {
-//     props: {
-//       events: filteredEvents,
-//       date: {
-//         year: numYear,
-//         month: numMonth
-//       }
-//     }
-//   }
-// }
 
 export default FilteredEventsPage;
