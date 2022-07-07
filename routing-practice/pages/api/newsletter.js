@@ -1,12 +1,20 @@
-function handler(req, res) {
+import { MongoClient, ServerApiVersion } from  'mongodb';
+
+async function handler(req, res) {
   if(req.method === 'POST') {
     const userEmail = req.body.email
     if(!userEmail || !userEmail.includes('@')) {
       res.status(422).json({ message: 'Invalid email address'});
       return;
     }
-    console.log(userEmail);
-    res.status(201).json({ message: 'Signed up!' })
+
+    const client = await MongoClient.connect(
+      'mongodb+srv://rutvi2500:rutvi2500@cluster0.izweg.mongodb.net/?retryWrites=true&w=majority'
+    )
+    const db = client.db('events');
+    await db.collection('newsletter').insertOne({ email: userEmail});
+    client.close();
+    res.status(201).json({ message: 'Signed up!' });
   }
 }
 

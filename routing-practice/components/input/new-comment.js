@@ -9,34 +9,35 @@ function NewComment(props) {
   const commentInputRef = useRef();
 
   function sendCommentHandler(event) {
+    const form = document.getElementById('commentForm');
     event.preventDefault();
-
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredComment = commentInputRef.current.value;
 
-    if (
-      !enteredEmail ||
-      enteredEmail.trim() === '' ||
-      !enteredEmail.includes('@') ||
-      !enteredName ||
-      enteredName.trim() === '' ||
-      !enteredComment ||
-      enteredComment.trim() === ''
-    ) {
-      setIsInvalid(true);
-      return;
-    }
+    // if (
+    //   !enteredEmail ||
+    //   enteredEmail.trim() === '' ||
+    //   !enteredEmail.includes('@') ||
+    //   !enteredName ||
+    //   enteredName.trim() === '' ||
+    //   !enteredComment ||
+    //   enteredComment.trim() === ''
+    // ) {
+    //   setIsInvalid(true);
+    //   return;
+    // }
 
     props.onAddComment({
       email: enteredEmail,
       name: enteredName,
       text: enteredComment,
     });
+    form.reset();
   }
 
   return (
-    <form className={classes.form}>
+    <form className={classes.form} id='commentForm' onSubmit={sendCommentHandler}>
       <div className={classes.row}>
         <div className={classes.control}>
           <label htmlFor='email'>Your email</label>
@@ -52,7 +53,7 @@ function NewComment(props) {
         <textarea id='comment' rows='5' ref={commentInputRef}></textarea>
       </div>
       {isInvalid && <p>Please enter a valid email address and comment!</p>}
-      <button>Submit</button>
+      <button type='submit'>Submit</button>
     </form>
   );
 }
