@@ -6,6 +6,7 @@ function NewsletterRegistration() {
   const emailInputRef = useRef()
 
   function registrationHandler(event) {
+    const form = document.getElementById('signupForm');
     const enteredEmail = emailInputRef.current.value;
     event.preventDefault();
     fetch('/api/newsletter', {
@@ -16,12 +17,13 @@ function NewsletterRegistration() {
       }
     }).then((res) => res.json())
     .then((data) => console.log(data))
+    form.reset()
   }
 
   return (
     <section className={classes.newsletter}>
       <h2>Sign up to stay updated!</h2>
-      <form onSubmit={registrationHandler}>
+      <form onSubmit={registrationHandler} id='signupForm'>
         <div className={classes.control}>
           <input
             required
