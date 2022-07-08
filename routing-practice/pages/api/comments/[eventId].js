@@ -35,7 +35,6 @@ async function handler(req, res) {
       res.status(201).json({ message: 'Comment added successfully', comment: newComment });
     } catch (error) {
       res.status(500).json({ message: 'Inserting comment failed' });
-      return;
     }
   }
   if (req.method === 'GET') {
