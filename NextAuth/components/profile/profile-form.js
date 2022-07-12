@@ -6,7 +6,7 @@ function ProfileForm(props) {
   const newPasswordRef = useRef();
 
   function submitHandler(event) {
-    event.preverntDefault();  
+    event.preventDefault();  
     const enteredOldPassword = oldPasswordRef.current.value;
     const enteredNewPassword = newPasswordRef.current.value;
     props.onChangePassword({
